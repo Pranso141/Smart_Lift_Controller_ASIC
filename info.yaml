@@ -26,14 +26,14 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: "clk"
-  ui[1]: "rst"
-  ui[2]: "outsider_loc[0]"
-  ui[3]: "outsider_loc[1]"
-  ui[4]: "insider_dest[0]"
-  ui[5]: "insider_dest[1]"
-  ui[6]: "req_valid"
-  ui[7]: "outsider_dir"
+  ui[0]: "outsider_loc[0]"
+  ui[1]: "outsider_loc[1]"
+  ui[2]: "insider_dest[0]"
+  ui[3]: "insider_dest[1]"
+  ui[4]: "outsider_dir"
+  ui[5]: "req_valid"
+  ui[6]: ""
+  ui[7]: ""
 
   # Outputs
   uo[0]: "motor_enable"
