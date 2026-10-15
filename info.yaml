@@ -1,60 +1,49 @@
 # Tiny Tapeout project information
 project:
-  title:        "SINGLE CYCLE RISC V CORE"      # Project title
+  title:        "SMART_LIFT_Controller"      # Project title
   author:       "Pranav Sapkale"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Single-cycle RV32I core; PC output via byte-select mux"      # One line description of what your project does
+  description:  "A smart lift controller ASIC"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     25000000      # Clock frequency in Hz (or 0 if not applicable)
+  clock_hz:     20000000      # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
   tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_pranso"
+  top_module:  "tt_um_lift"
 
   # List your project's source files here.
   # Source files must be in ./src and you must list each source file separately, one per line.
   # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
-    - "adder.v"
-    - "ALU.v"
-    - "ALUCU.v"
-    - "branch_unit.v"
-    - "CU.v"
-    - "data_mem.v"
-    - "imm_gen.v"
-    - "instrct_mem.v"
-    - "pc.v"
-    - "reg_file.v"
-    - "sky130_sram_1kbyte_1rw1r_32x256_8.v"
-    - "small_mux.v"
-    - "tt_um_pranso.v"
-    - "wb_mux.v"
-    - "tt_um_pranso_wrapper.v"
+    - "tt_um_lift.v"
+    - "lift_fsm.v"
+    - "request_manager.v"
+    - "floor_tracker.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: "PC_BYTE_SEL0"
-  ui[1]: "PC_BYTE_SEL1"
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  ui[0]: "clk"
+  ui[1]: "rst"
+  ui[2]: "outsider_loc[0]"
+  ui[3]: "outsider_loc[1]"
+  ui[4]: "insider_dest[0]"
+  ui[5]: "insider_dest[1]"
+  ui[6]: "req_valid"
+  ui[7]: "outsider_dir"
 
   # Outputs
-  uo[0]: "PC_BIT0"
-  uo[1]: "PC_BIT1"
-  uo[2]: "PC_BIT2"
-  uo[3]: "PC_BIT3"
-  uo[4]: "PC_BIT4"
-  uo[5]: "PC_BIT5"
-  uo[6]: "PC_BIT6"
-  uo[7]: "PC_BIT7"
+  uo[0]: "motor_enable"
+  uo[1]: "motor_dir"
+  uo[2]: "curr_floor_out[0]"
+  uo[3]: "curr_floor_out[1]"
+  uo[4]: "dir_up_led"
+  uo[5]: "dir_down_led"
+  uo[6]: ""
+  uo[7]: ""
 
   # Bidirectional pins
   uio[0]: ""
