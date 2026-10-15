@@ -26,8 +26,9 @@ async def test_lift_controller(dut):
     await ClockCycles(dut.clk, 1)
 
     # Check reset state: lift at floor 0 (uo_out[3:2] == 00), not moving
-    curr_floor = (dut.uo_out.value >> 2) & 0x3
-    motor_enable = dut.uo_out.value & 0x1
+    uo_val = int(dut.uo_out.value.to_unsigned())
+    curr_floor = (uo_val >> 2) & 0x3
+    motor_enable = uo_val & 0x1
     assert curr_floor == 0, f"Expected floor 0, got {curr_floor}"
     assert motor_enable == 0, f"Expected motor off initially, got {motor_enable}"
 
@@ -44,11 +45,13 @@ async def test_lift_controller(dut):
     # Let it run for a few cycles to transition and reach floor 2
     for _ in range(10):
         await ClockCycles(dut.clk, 1)
-        curr_floor = (dut.uo_out.value >> 2) & 0x3
+        uo_val = int(dut.uo_out.value.to_unsigned())
+        curr_floor = (uo_val >> 2) & 0x3
         if curr_floor == 2:
             break
 
-    curr_floor = (dut.uo_out.value >> 2) & 0x3
+    uo_val = int(dut.uo_out.value.to_unsigned())
+    curr_floor = (uo_val >> 2) & 0x3
     assert curr_floor == 2, f"Expected lift to reach floor 2, got {curr_floor}"
 
     # Wait another cycle for stop and clear

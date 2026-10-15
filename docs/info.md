@@ -9,8 +9,6 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
-
 1. Request manager (request_manager) Stores every pending call in three 4-bit registers (one bit per floor):
 
 hall_up: up button pressed outside the lift on that floor
@@ -38,8 +36,6 @@ All state is reset by the active-low reset, which brings the lift back to floor 
 
 Simplifications: the lift moves one floor per clock cycle and has no door or timing model. The lift stops at a floor for any pending request there, regardless of the hall-call direction.
 ## How to test
-
-Explain how to use your project
 
 Apply a clock and pull reset low for a few cycles, then release it. The lift is at floor 0 (curr_floor_out = 00), and both direction LEDs are off.
 To place a request, set:
